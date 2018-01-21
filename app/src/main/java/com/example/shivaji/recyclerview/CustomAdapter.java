@@ -13,11 +13,11 @@ import java.util.List;
  * Created by shivaji on 21/1/18.
  */
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.NumViewHolder> {
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.NumViewHolder> {
     Context context;
-    List<Model> numList;
+    List<Data> numList;
 
-    public RVAdapter(Context context, List<Model> numList) {
+    public CustomAdapter(Context context, List<Data> numList) {
         this.context = context;
         this.numList = numList;
     }
@@ -31,8 +31,9 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.NumViewHolder> {
 
     @Override
     public void onBindViewHolder(NumViewHolder holder, int position) {
-        Model model = numList.get(position);
-        holder.numTextView.setText(model.getNum()+"");
+        Data data = numList.get(position);
+        holder.nameTextView.setText(data.getName());
+        holder.bodyTextView.setText(data.getBody());
     }
 
     @Override
@@ -41,11 +42,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.NumViewHolder> {
     }
 
     class NumViewHolder extends RecyclerView.ViewHolder {
-        TextView numTextView;
+        TextView nameTextView;
+        TextView bodyTextView;
 
         public NumViewHolder(View itemView) {
             super(itemView);
-            numTextView = (TextView)itemView.findViewById(R.id.item_text_view);
+            nameTextView = (TextView)itemView.findViewById(R.id.name_text_view);
+            bodyTextView = (TextView)itemView.findViewById(R.id.body_text_view);
         }
     }
 }
